@@ -1,0 +1,37 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jocorrea <jocorrea@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/13 13:59:26 by jocorrea          #+#    #+#              #
+#    Updated: 2024/01/13 15:06:24 by jocorrea         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = phonebook
+
+SRCS = Contact.cpp PhoneBook.cpp main.cpp
+OBJS = $(SRCS:.cpp=.o)
+
+CC = c++
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+
+all: $(NAME)
+
+.cpp.o:
+	$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
+
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
+
+clean:
+	@$(RM)  $(OBJS)
+
+fclean: clean
+	@$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
